@@ -6,3 +6,4 @@ RUN apt-get update; \
         php8.2-mysql; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+

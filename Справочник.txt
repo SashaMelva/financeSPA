@@ -1,0 +1,19 @@
+https://itchief.ru/javascript/json#struktura-formata-json
+
+https://ru.hexlet.io/courses/js-dom/lessons/ajax/theory_unit
+
+https://learn.javascript.ru/fetch
+https://learn.javascript.ru/async-await
+https://itchief.ru/javascript/json#struktura-formata-json
+
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --2 --install-dir=/usr/local/bin --filename=composer
+
+
+    fetch('https://google.com').then(Response => Response.json()).then(result => alert(JSON.stringify(result)));
+
+https://docs.neos.io/guide/installation-development-setup/docker-and-docker-compose-setup
+
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-set-up-laravel-with-docker-compose-on-ubuntu-20-04-ru
