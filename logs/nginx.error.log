@@ -1,0 +1,119 @@
+2023/03/06 13:56:45 [error] 34#34: *6 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined array key "action" in /financeSPA/public/index.php on line 9; PHP message: PHP Warning:  require_once(page404.php): Failed to open stream: No such file or directory in /financeSPA/public/index.php on line 21; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'page404.php' (include_path='.:/usr/share/php') in /financeSPA/public/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /financeSPA/public/index.php on line 21" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:03:02 [error] 31#31: *8 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined array key "action" in /financeSPA/public/index.php on line 9; PHP message: PHP Warning:  require_once(page404.php): Failed to open stream: No such file or directory in /financeSPA/public/index.php on line 21; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'page404.php' (include_path='.:/usr/share/php') in /financeSPA/public/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /financeSPA/public/index.php on line 21" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:17:08 [error] 32#32: *10 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined array key "action" in /financeSPA/public/index.php on line 9; PHP message: PHP Warning:  require_once(page404.php): Failed to open stream: No such file or directory in /financeSPA/public/index.php on line 21; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'page404.php' (include_path='.:/usr/share/php') in /financeSPA/public/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /financeSPA/public/index.php on line 21" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET /registration HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:17:39 [error] 32#32: *10 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined array key "action" in /financeSPA/public/index.php on line 9; PHP message: PHP Warning:  require_once(page404.php): Failed to open stream: No such file or directory in /financeSPA/public/index.php on line 21; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'page404.php' (include_path='.:/usr/share/php') in /financeSPA/public/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /financeSPA/public/index.php on line 21" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET /registration HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:28:47 [error] 37#37: *13 FastCGI sent in stderr: "PHP message: PHP Warning:  require_once(page404.php): Failed to open stream: No such file or directory in /financeSPA/public/index.php on line 21; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'page404.php' (include_path='.:/usr/share/php') in /financeSPA/public/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /financeSPA/public/index.php on line 21" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:29:35 [error] 37#37: *13 FastCGI sent in stderr: "PHP message: PHP Warning:  require_once(page404.php): Failed to open stream: No such file or directory in /financeSPA/public/index.php on line 21; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'page404.php' (include_path='.:/usr/share/php') in /financeSPA/public/index.php:21
+Stack trace:
+#0 {main}
+  thrown in /financeSPA/public/index.php on line 21" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET /registration HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:54:07 [error] 39#39: *34 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:54:20 [error] 39#39: *34 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:55:01 [error] 39#39: *34 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:55:39 [error] 39#39: *34 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:56:46 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:57:12 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:57:13 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:57:13 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:57:13 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:57:49 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:57:50 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:57:50 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:58:20 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:58:38 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:58:39 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:58:53 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 14:58:53 [error] 41#41: *43 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 15:00:11 [error] 30#30: *71 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"
+2023/03/06 15:04:22 [error] 30#30: *75 FastCGI sent in stderr: "PHP message: PHP Warning:  Undefined variable $contentView in /financeSPA/views/template_view.php on line 14; PHP message: PHP Warning:  require_once(views/): Failed to open stream: No such file or directory in /financeSPA/views/template_view.php on line 14; PHP message: PHP Fatal error:  Uncaught Error: Failed opening required 'views/' (include_path='.:/usr/share/php') in /financeSPA/views/template_view.php:14
+Stack trace:
+#0 /financeSPA/public/index.php(12): require_once()
+#1 {main}
+  thrown in /financeSPA/views/template_view.php on line 14" while reading response header from upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.3:9000", host: "localhost:8080"

@@ -6,5 +6,11 @@
             "": "src/"
         }
     },
+    "authors": [
+        {
+            "name": "Sasha Mel",
+            "email": "sa1524517@gmail.com"
+        }
+    ],
     "require": {}
 }

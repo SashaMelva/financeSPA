@@ -1,4 +1,5 @@
 <?php
+namespace src;
 
 class User 
 {
@@ -6,4 +7,6 @@ class User
         private string $login,
         private string $password,
     ){}
+
+    
 }

@@ -17,3 +17,10 @@ https://docs.neos.io/guide/installation-development-setup/docker-and-docker-comp
 
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-set-up-laravel-with-docker-compose-on-ubuntu-20-04-ru
+
+
+/*Tak delaet jeny*/
+https://habr.com/ru/post/150267/#ControllerTypes
+
+
+https://code.mu/ru/php/book/oop/mvc/using/application-example/
