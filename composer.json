@@ -1,16 +1,20 @@
 {
-    "name": "admin1/financeSPA",
-    "license": "GPL-3.0-only",
+    "require": {
+      "ext-iconv": "*",
+      "ext-simplexml": "*",
+      "monolog/monolog": "^3.2",
+      "vlucas/phpdotenv": "*",
+      "ext-pdo": "*"
+    },
     "autoload": {
-        "psr-4": {
-            "": "src/"
-        }
+      "psr-4": {
+        "App\\": "src"
+      }
     },
     "authors": [
         {
             "name": "Sasha Mel",
             "email": "sa1524517@gmail.com"
         }
-    ],
-    "require": {}
-}
+    ]
+  }

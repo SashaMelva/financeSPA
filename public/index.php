@@ -1,18 +1,17 @@
-<?php
-spl_autoload_register(function ($className) {
-        require_once './app' .join('/', explode('\\', $className)) . '.php';
-    }
-);
+<!DOCTYPE html>
+<html lang="en" class="page">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 
-use src\User;
-
-switch($_SERVER['REQUEST_URI'])
-{ 
-	case "/" :
-		require_once("../views/template_view.php"); 
-		break;
-	default : 
-		require_once("../views/404_not_found.php");
-	    break;
-}
-
+    <title>Finance SPA</title>
+</head>
+<body>
+    <main id="app" class="main">
+            <h1>123123</h1>
+    </main>
+    <script src="/resources/js/main.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@
             <input class="btn" value="Sign in" type="submit">
         </form>
         <div class="btn-form">
-            <button class="btn btn-sign-up" onclick="loadRegistration()">Sign up</button>
+            <a href="/registration" class="btn btn-sign-up">Sign up</button>
         </div>
     </div>
 </section>

@@ -24,3 +24,23 @@ https://habr.com/ru/post/150267/#ControllerTypes
 
 
 https://code.mu/ru/php/book/oop/mvc/using/application-example/
+
+
+https://github.com/ionov-e/blog-php-mysql/blob/master/docker-compose.yml
+
+
+fetch('https://google.com').then(Response => Response.json()).then(result => alert(JSON.stringify(result)));
+
+
+<?php foreach ($operations as $operation) : ?>
+        <?= $operation['operations_id'] ?>
+        <?= $operation['name'] ?>
+        <?= $operation['sum'] ?>
+        <?= $operation['login'] ?>
+        <?= $operation['comment'] ?>
+    <?php endforeach; ?>
+
+https://skillbox.ru/media/code/kak_sozdat_spa_na_js_i_php_za_chas/
+
+
+https://github.com/ionov-e/spa-php-finance/blob/master/public/finance.php

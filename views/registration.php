@@ -11,7 +11,7 @@
             <input class="btn" value="Sign up" type="submit">
         </form>
         <div class="btn-form">
-            <button class="btn btn-sign-up" onclick="loadAuthorization()">Back</button>
+            <a href="/" class="btn btn-sign-up">Back</button>
         </div>
     </div>
 </section>
