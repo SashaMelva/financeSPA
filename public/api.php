@@ -1,37 +1,35 @@
 <?php
-// spl_autoload_register(function ($className) {
-//         echo require_once '../app/' .join('/', explode('\\', $className)) . '.php';
-//     }
-// );
 
+//Автозагрузка классов с помощью composer
 require_once dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR . "autoload.php";
 
 use App\Controllers\AuthorizationController;
 use App\Controllers\RegistrationController;
 use App\Controllers\OperationsController;
 use App\Controllers\AddOperationsController;
-use App\View;
 
 
-$authorization = new AuthorizationController();
-$registration = new RegistrationController();
+
 $operations = new OperationsController();
 $addOperations = new AddOperationsController();
 
 
-/*echo ;
-echo $operations->viewOperations();
-echo $addOperations->viewAddOperations();
-*/
 
-
-
-
+/**Отслеживание GET запросов, с дальнейшей адресации страницы*/
 if (empty($_GET)) {
-	$contentView = $authorization->viewAuthorization();
+
+	(new AuthorizationController())->viewAuthorization();
+
+	// echo json_encode(['html' => (new AuthorizationController())->viewAuthorization()]);
+	
 	//$path = dirname(__DIR__, 1) . "/views/template_view.php";
-	echo new View("/financeSPA/views/template_view.php", [$contentView]);
+	//echo new View("/financeSPA/public/index.php", [$contentView]);
 }
+
+if ($_GET['registration']) {
+	(new RegistrationController())->viewRegistration();
+}
+
 		// echo require_once("index.php");
 		// $path = dirname(__DIR__, 1) . "/views/template_view.php";
 		// $path = "../views/template_view.php";

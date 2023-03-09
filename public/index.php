@@ -10,7 +10,7 @@
 </head>
 <body>
     <main id="app" class="main">
-            <h1>123123</h1>
+
     </main>
     <script src="/resources/js/main.js"></script>
 </body>

@@ -44,3 +44,13 @@ https://skillbox.ru/media/code/kak_sozdat_spa_na_js_i_php_za_chas/
 
 
 https://github.com/ionov-e/spa-php-finance/blob/master/public/finance.php
+
+
+Старый способ автозагрузки 
+// spl_autoload_register(function ($className) {
+//         echo require_once '../app/' .join('/', explode('\\', $className)) . '.php';
+//     }
+// );
+
+
+<?php require_once("api.php") ?>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\View;
+use App\Response;
 
 class OperationsController 
 {
@@ -11,8 +12,9 @@ class OperationsController
         private string $comment
     ){}*/
 
-    public function viewOperations() {
-        $view = new View("../views/main_operations.php");
-        return $view->getHtml();
+    public function viewOperations() 
+    {
+        $html = new View("../views/main_operations.php");
+        (new Response('success', $html))->getResponse();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\View;
+use App\Response;
 
 class AuthorizationController 
 {
@@ -9,17 +10,24 @@ class AuthorizationController
         private string $password,
     ){}*/
     
-    public function viewAuthorization(): string 
+
+    //Метод для загрузки страницы авторизации
+    public function viewAuthorization()
     {
-    
-        return new View("../views/authorization.php");
+        $html = new View("../views/authorization.php");
+        (new Response('success', $html))->getResponse();
     }
+/*
+    public function signIn() 
+    {
+        if ($this->login == "") {
 
-    // public function signIn() {
-    //     if ($login == "") {
+        }
+        if ($this->password == "") {
 
-    //     }
-    // }
+        }
+       
+    }*/
 }
 
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\View;
+use App\Response;
 
 class RegistrationController 
 {
@@ -9,9 +10,10 @@ class RegistrationController
         private string $password,
     ){}*/
     
-    public function viewRegistration(): string {
-        $view = new View("../views/registration.php");
-        return $view->getHtml();
+    public function viewRegistration() 
+    {
+        $html = new View("../views/registration.php");
+        (new Response('success', $html))->getResponse();
     }
 
     /*public function signIn() {

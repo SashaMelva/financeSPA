@@ -33,7 +33,7 @@ INSERT INTO types (name, description) VALUES
 
 
 INSERT INTO operations (sum, operations_type_id, operations_user_id, comment) VALUES 
-            ('300', '1', '1', ''), 
-            ('200', '1', '1', ''), 
+            ('300', '1', '1', 'qwaddawdawdaw'), 
+            ('200', '1', '1', 'wewdadwswsws'), 
             ('1000', '2', '1', '');
             
