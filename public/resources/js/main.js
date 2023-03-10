@@ -11,7 +11,7 @@ function insertIntoHtml(json) {
 
 async function loadAuthorizatioin() {
     let response = await fetch('/api.php?page=authorization');
-    json = await response.json();
+    let json = await response.json();
     insertIntoHtml(json);
 }
 async function loadRegistration() {
@@ -21,37 +21,38 @@ async function loadRegistration() {
 }
 async function loadMainOperation() {
     let response = await fetch('/api.php?page=main_operations');
-    json = await response.json();
+    let json = await response.json();
     insertIntoHtml(json);
 }
 async function loadAddOperation() {
     let response = await fetch('/api.php?page=add_operation');
-    json = await response.json();
+    let json = await response.json();
     insertIntoHtml(json);
 }
 
 /*Отпрвавка запроса на Авторизацию*/
 
-async function authorization() {
+async function authorization() { 
     const form = new FormData(document.querySelector("form.form-authorization"));
-    let response = await fetch("/api.php", {
-      method: "POST",
-      headers: {"Content-Type": "application/json;charset=utf-8"},
+
+    let response = await fetch('/api.php', {
+      method: 'POST',
       body: form
     });
-    
-    json = await response.json();
+
+    let json = await response.json();
     insertIntoHtml(json);
 }
 
 async function registration() {
-    let response = await fetch('/', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json;charset=utf-8"},
-        //body: JSON.stringify(inputData)
+    const form = new FormData(document.querySelector("form.form-registration"));
+
+    let response = await fetch('/api.php', {
+      method: 'POST',
+      body: form
     });
 
-    json = await response.json();
+    let json = await response.json();
     insertIntoHtml(json);
 }
 

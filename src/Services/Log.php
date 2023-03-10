@@ -2,16 +2,48 @@
 
 namespace App\Services;
 
-use Monolog\Level;
+use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 class Log
 {
-    static function getLogger(): Logger
+    protected static Logger $instance;
+
+    public static function getLogger(): Logger
     {
-        $log = new Logger('spa');
-        $log->pushHandler(new StreamHandler(LOGGER_PATH, Level::Debug));
-        return $log;
+        self::createLoggerIfDoesntExist();
+
+        return self::$instance;
     }
+
+    private static function createLoggerIfDoesntExist(string $channel = 'spa'): void
+    {
+        if (!isset(self::$instance)) {
+            $logger = new Logger($channel);
+            $logger->pushHandler(new RotatingFileHandler(LOGGER_PATH, 200));
+            self::$instance = $logger;
+        }
+    }
+
+    public static function debug(string $message, array $context = []): void
+    {
+        self::getLogger()->debug($message, $context);
+    }
+
+    public static function warning(string $message, array $context = []): void
+    {
+        self::getLogger()->warning($message, $context);
+    }
+
+    public static function error(string $message, array $context = []): void
+    {
+        self::getLogger()->error($message, $context);
+    }
+
+    public static function critical(string $message, array $context = []): void
+    {
+        self::getLogger()->critical($message, $context);
+    }
+
+
 }

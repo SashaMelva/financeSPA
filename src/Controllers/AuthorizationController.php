@@ -2,13 +2,17 @@
 namespace App\Controllers;
 use App\View;
 use App\Response;
+use App\Models\UsersModel;
 
 class AuthorizationController 
 {
-   /*public function __construct(
+    public function __construct(
         private string $login,
         private string $password,
-    ){}*/
+    ){
+        $this->login = trim($login);
+        $this->password = trim($password);
+    }
     
  
     //Метод для загрузки страницы авторизации
@@ -17,8 +21,8 @@ class AuthorizationController
         $html = new View("../views/authorization.php");
         (new Response('success', $html))->getResponse();
     }
-/*
-    public function signIn() 
+
+    public function validationAuthentication()
     {
         if ($this->login == "") {
 
@@ -26,8 +30,17 @@ class AuthorizationController
         if ($this->password == "") {
 
         }
-       
-    }*/
+        if ($this->login != "" && $this->password != "") {
+
+            (new OperationsController())->viewOperations();
+        }
+    }
+
+
+    public function authenticationUser() 
+    {
+        (new UsersModel())->loginVerification();
+    }
 }
 
 

@@ -1,27 +1,25 @@
 <?php
+require_once dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "config.php";
 
-//Автозагрузка классов с помощью composer
-require_once dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR . "autoload.php";
 
 use App\Controllers\AuthorizationController;
 use App\Controllers\RegistrationController;
 use App\Controllers\OperationsController;
 use App\Controllers\AddOperationsController;
 use App\Response;
+use App\Services\Log;
 use App\View;
+use App\DB\Connection;
 
-
-$addOperations = new AddOperationsController();
-
-
+(new Connection())->openConnectionDB();
 
 /**Отслеживание GET запросов, с дальнейшей адресации страницы*/
 switch ($_GET['page']) {
 	case 'authorization':
-		(new AuthorizationController())->viewAuthorization();
+		(new AuthorizationController("", ""))->viewAuthorization();
 		break;
 	case 'registration':
-		(new RegistrationController())->viewRegistration();
+		(new RegistrationController("", "", ""))->viewRegistration();
 		break;
 	case 'main_operations':
 		(new OperationsController())->viewOperations();
@@ -35,15 +33,19 @@ switch ($_GET['page']) {
 		break;*/
 }
 
-/*switch ($_POST['']) {
-	case 'authorization': 
-		echo"34233rwrfesrfesrfserf";
-		break;
-}*/
 
-switch ($_POST['formm']) {
+switch ($_POST['form-name']) {
 	case 'authorization':
-		(new OperationsController())->viewOperations();
+		(new AuthorizationController($_POST['login'], $_POST['password']))->signIn();
 		break;
-	
+	case 'registration':
+		$html = (new View("../views/404_not_found.php"));
+		(new Response('success', $html))->getResponse();
+		break;
 }
+
+/*
+Log::debug(json_encode(file_get_contents('php://input')));
+
+$logContent = ['get' => $_GET, 'post' => $_POST];
+Log::debug(json_encode($logContent));*/

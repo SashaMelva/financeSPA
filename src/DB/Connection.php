@@ -1,23 +1,26 @@
 <?php
-namespace src\DB;
 
-class Connection 
+namespace App\DB;
+
+class Connection
 {
-    /*public function __construct(
-    ){}*/
-    
-    public function connectionDB() {
-        $conn = new mysqli("financespa-mysql-1", "user", "user", "blog_db");
+    public var $conn;
+    public function openConnectionDB() {
+        $this->conn = new mysqli("financespa-mysql-1", "user", "user", "blog_db");
 
-        if ($conn->connect_error) {
-            die("Ошибка: " . $conn->connect_error);
+        if ($this->conn->connect_error) {
+            die("Ошибка: " . $this->conn->connect_error);
         }
-        echo "Подключение успешно установлено";
+        return "Подключение успешно установлено";
     }
+    public function connection()
+    {
+        return $this->conn;
+    }
+
 
     public function closeConnectionDB() {
-        $conn->close();
+        $this->conn->close();
+        return "Подключение к бд закрыто";
     }
-    
 }
-

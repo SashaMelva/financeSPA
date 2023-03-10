@@ -9,7 +9,7 @@ CREATE TABLE operations
 (
     operations_id INT PRIMARY KEY AUTO_INCREMENT, 
     sum INT NOT NULL,
-    operations_type_id VARCHAR(100) NOT NULL, 
+    operations_type_id INT NOT NULL, 
     operations_user_id INT NOT NULL,
     comment TEXT
 );
@@ -29,7 +29,7 @@ INSERT INTO users (login, password) VALUES
 
 INSERT INTO types (name, description) VALUES 
             ('coming', ''), 
-            ('expense', '')
+            ('expense', '');
 
 
 INSERT INTO operations (sum, operations_type_id, operations_user_id, comment) VALUES 
