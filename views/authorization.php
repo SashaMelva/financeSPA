@@ -1,6 +1,7 @@
 <section class="container">
     <div class="form-container">
-        <form class="form-display" action="" method="POST">
+        <form class="form-display form-authorization" action="" method="POST">
+            <input id="formm" name="formm" value="authorization" hidden>
             <legend class="legend-form">Authorization</legend>
             <label for="login">Enter login</label>
             <input class="input-form" id="login" name="login" type="text" placeholder="login" required>

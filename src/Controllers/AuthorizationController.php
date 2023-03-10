@@ -10,7 +10,7 @@ class AuthorizationController
         private string $password,
     ){}*/
     
-
+ 
     //Метод для загрузки страницы авторизации
     public function viewAuthorization()
     {

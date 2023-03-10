@@ -8,10 +8,10 @@
             <input class="input-form" id="password" name="password" type="password" placeholder="password" required>
             <label for="repeat-password">Repeat password</label>
             <input class="input-form" id="repeat-password" name="repeat-password" type="password" placeholder="Repeat password" required>
-            <input class="btn" value="Sign up" type="submit">
+            <button class="btn">Sign up</button>
         </form>
         <div class="btn-form">
-            <a href="/" class="btn btn-sign-up">Back</button>
+            <button onclick="loadAuthorizatioin()" class="btn btn-sign-up">Back</button>
         </div>
     </div>
 </section>

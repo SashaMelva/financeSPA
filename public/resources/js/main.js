@@ -1,38 +1,67 @@
 
-document.addEventListener("DOMContentLoaded", loadFirstContent);
+document.addEventListener("DOMContentLoaded", loadAuthorizatioin);
 
 
 function insertIntoHtml(json) {
     let main = document.querySelector('main');
-    //main.innerHTML = '';
     main.innerHTML = json.html;
 }
 
-async function loadFirstContent() {
-    let response = await fetch('/api.php');
+/*Отправка запросов на получение страницы*/
+
+async function loadAuthorizatioin() {
+    let response = await fetch('/api.php?page=authorization');
     json = await response.json();
     insertIntoHtml(json);
 }
-
 async function loadRegistration() {
-    let response = await fetch('/?registration');
+    let response = await fetch('/api.php?page=registration');
+    json = await response.json();
+    insertIntoHtml(json);
+}
+async function loadMainOperation() {
+    let response = await fetch('/api.php?page=main_operations');
+    json = await response.json();
+    insertIntoHtml(json);
+}
+async function loadAddOperation() {
+    let response = await fetch('/api.php?page=add_operation');
     json = await response.json();
     insertIntoHtml(json);
 }
 
+/*Отпрвавка запроса на Авторизацию*/
 
 async function authorization() {
-    //let container = document.querySelector('#app');
+    const form = new FormData(document.querySelector("form.form-authorization"));
+    let response = await fetch("/api.php", {
+      method: "POST",
+      headers: {"Content-Type": "application/json;charset=utf-8"},
+      body: form
+    });
+    
+    json = await response.json();
+    insertIntoHtml(json);
+}
+
+async function registration() {
     let response = await fetch('/', {
         method: 'POST',
         headers: {"Content-Type": "application/json;charset=utf-8"},
         //body: JSON.stringify(inputData)
-      });
-  
-    // fetch('/?registration');
-    return await response.json();
-    //container.innerHTML = result;
+    });
+
+    json = await response.json();
+    insertIntoHtml(json);
 }
+
+
+    // //let container = document.querySelector('#app');
+    // let response = await fetch('/', {
+    //     method: 'POST',
+    //     headers: {"Content-Type": "application/json;charset=utf-8"},
+    //     //body: JSON.stringify(inputData)
+    // });
 
 
     // let response = fetch("/api.php")
