@@ -3,18 +3,21 @@ namespace App\Controllers;
 use App\View;
 use App\Response;
 use App\Models\UsersModel;
+use App\Services\Log;
 
 class AuthorizationController 
 {
-    public function __construct(
+   /* public function __construct(
         private string $login,
         private string $password,
     ){
         $this->login = trim($login);
         $this->password = trim($password);
-    }
+    }*/
     
- 
+    public array $message;
+    public array $errorMessage;
+    public bool $userAuth = false;
     //Метод для загрузки страницы авторизации
     public function viewAuthorization()
     {
@@ -22,24 +25,41 @@ class AuthorizationController
         (new Response('success', $html))->getResponse();
     }
 
-    public function validationAuthentication()
+    public function validationAuthentication(string $login, string $password)
     {
-        if ($this->login == "") {
-
+        if ($login == "" || $password == "") {
+            return $this->errorMessage[] = "Введите логин или пароль";
         }
-        if ($this->password == "") {
-
-        }
-        if ($this->login != "" && $this->password != "") {
-
-            (new OperationsController())->viewOperations();
+        if ($login != "" && $password != "") {
+            $this->authenticationUser($login, $password);
         }
     }
 
 
-    public function authenticationUser() 
+    public function authenticationUser(string $login, string $password) 
     {
-        (new UsersModel())->loginVerification();
+        $userData = (new UsersModel($login, $password))->loginVerification();
+        $countUserLogin = (new UsersModel($login, $password))->countLogin();
+        
+        if ($countUserLogin == 1) {
+            if ($userData['password'] == $password) {
+                $this->message[] = "Вы успешно авторизовались";
+                $this->userAuth = true;
+                
+            } else {
+                return $this->errorMessage[] = "Пользователь с таким логином не найден"; 
+            }
+        } else {
+            return $this->errorMessage[] = "Пользователь с таким логином не найден";
+        }
+        
+    }
+
+    public function authorizationUser(string $login, string $password) 
+    {
+        if($this->validationAuthentication($login, $password) == true) {
+            (new OperationsController())->viewOperations();
+        }
     }
 }
 

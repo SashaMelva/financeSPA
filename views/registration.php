@@ -1,6 +1,6 @@
 <section class="container">
     <div class="form-container">
-        <form class="form-display form-registration">
+        <form class="form-display form-registration" method="POST">
             <input id="form-name" name="form-name" value="registration" hidden>
             <legend class="legend-form">Registration</legend>
             <label for="login">Enter login</label>

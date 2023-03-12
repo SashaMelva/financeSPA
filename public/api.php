@@ -11,18 +11,19 @@ use App\Services\Log;
 use App\View;
 use App\DB\Connection;
 
-(new Connection())->openConnectionDB();
+//(new Connection())->openConnectionDB();
 
 /**Отслеживание GET запросов, с дальнейшей адресации страницы*/
 switch ($_GET['page']) {
 	case 'authorization':
-		(new AuthorizationController("", ""))->viewAuthorization();
+		(new AuthorizationController())->viewAuthorization();
 		break;
 	case 'registration':
-		(new RegistrationController("", "", ""))->viewRegistration();
+		(new RegistrationController())->viewRegistration();
 		break;
 	case 'main_operations':
 		(new OperationsController())->viewOperations();
+		(new OperationsController())->getOperations();
 		break;
 	case 'add_operation':
 		(new AddOperationsController())->viewAddOperations();
@@ -36,11 +37,10 @@ switch ($_GET['page']) {
 
 switch ($_POST['form-name']) {
 	case 'authorization':
-		(new AuthorizationController($_POST['login'], $_POST['password']))->signIn();
+		(new AuthorizationController())->validationAuthentication(trim($_POST['login']), trim($_POST['password']));
 		break;
 	case 'registration':
-		$html = (new View("../views/404_not_found.php"));
-		(new Response('success', $html))->getResponse();
+		(new RegistrationController())->validationRegistration(trim($_POST['login']), trim($_POST['password']), trim($_POST['repeat-password']));
 		break;
 }
 

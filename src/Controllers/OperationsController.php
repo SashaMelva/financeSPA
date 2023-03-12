@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use App\View;
 use App\Response;
+use App\Models\OperationsModel;
 
 class OperationsController 
 {
@@ -17,4 +18,9 @@ class OperationsController
         $html = new View("../views/main_operations.php");
         (new Response('success', $html))->getResponse();
     }
+    public function getOperations() {
+        $operaations = (new OperationsModel())->selectAllDataOperations();
+        return $operaations;
+    }
+    
 }
