@@ -30,7 +30,7 @@ async function loadAddOperation() {
     insertIntoHtml(json);
 }
 
-/*Отпрвавка запроса на Авторизацию*/
+/*Отпрвавка запросов авторизауии и регистрации*/
 
 async function authorization() { 
     const form = new FormData(document.querySelector("form.form-authorization"));
@@ -56,6 +56,21 @@ async function registration() {
     insertIntoHtml(json);
 }
 
+/* Yдаление и изменение товара*/
+
+async function deleteOperation() {
+    let response = await fetch('/api.php?page=add_operation&action=delete');
+}
+
+async function editOperation() {
+    let idOption = 1;
+    let response = await fetch('/api.php?page=add_operation&action=edit&id=' + idOption);
+}
+
+async function addOperation() {
+    let idOption = 1;
+    let response = await fetch('/api.php?page=add_operation&action=add&id=' + idOption);
+}
 
     // //let container = document.querySelector('#app');
     // let response = await fetch('/', {

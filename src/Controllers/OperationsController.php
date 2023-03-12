@@ -18,9 +18,14 @@ class OperationsController
         $html = new View("../views/main_operations.php");
         (new Response('success', $html))->getResponse();
     }
-    public function getOperations() {
-        $operaations = (new OperationsModel())->selectAllDataOperations();
-        return $operaations;
+    public function getAllOperations() {
+        $operations = (new OperationsModel())->selectAllDataOperations();
+        return $operations;
     }
-    
+    public function addOperation(int $sum, int $typeId, int $userId, string $comment) {
+        (new OperationsModel())->addOperation($sum, $typeId, $userId, $comment);
+    }
+    public function deletOperation(int $id) {
+        (new OperationsModel())->deletOperation($id);
+    }
 }
