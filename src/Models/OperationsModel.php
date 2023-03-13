@@ -21,17 +21,16 @@ FROM operations
 ORDER BY operations_id DESC LIMIT 5;
 ";
         $allData = $this->mysqli->query($sql);
-        foreach ($allData as $result) {
-            $resultAsArray[] = mysqli_fetch_assoc($result);
+        for ($i = 1; $i < $allData->num_rows; $i++) {
+            $arrayData[$i] = mysqli_fetch_assoc($allData);
         }
+        
 
-
-
-        if (!is_array($resultAsArray)) {
+        if (!is_array($arrayData)) {
             throw new \Exception('Error with MySQL getting operations');
         }
 
-        return $resultAsArray;
+        return $arrayData;
     }
 
     public function store(int $sum, int $typeId, int $userId, string $comment)

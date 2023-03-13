@@ -27,28 +27,24 @@ class RegistrationController
         } 
         if ($password != $repeatPassword) {
             return $this->errorMessage[] = "Введённые вами пароли должны совпадать";
-        } else {
-            $this->registrationUser($login, $password);
+        } else if ($this->registrationUser($login, $password)) {
+            (new AuthorizationController)->viewAuthorization();
         }
     }
 
 
-    public function registrationUser(string $login, string $password) 
+    public function registrationUser(string $login, string $password): bool
     {
-        $countUserLogin = (new UsersModel($login, $password))->countLogin();
-        //return (new OperationsController())->viewOperations();
+        $mysqli = (new ConnectionDB)->getMysqli();
+        $countUserLogin = (new UsersModel($login, $password, $mysqli))->countLogin();
+
         if ($countUserLogin == 0) {
             $this->errorMessage[] = "Пользователь с таким логином ";
-            (new OperationsController)->viewOperations();
-        } else {
-            if ((new UsersModel($login, $password))->addUser()) {
+            return false;
+        } else if ((new UsersModel($login, $password, $mysqli))->add()) {
                 $this->message[] = "Вы успешно ";
-               
-            } else {
-                return $this->errorMessage[] = "Error registration";
-            }
-            
-        }
-        
+                return true;
+            } 
+        return false;
     }
 }

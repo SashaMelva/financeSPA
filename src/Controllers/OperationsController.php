@@ -17,6 +17,7 @@ class OperationsController
     /** @throws \Exception */
     public function viewOperations(): void
     {
+        
         $html = new View("../views/operation_list.php", $this->getAllOperations());
         (new Response('success', $html))->getResponse();
     }
@@ -29,10 +30,12 @@ class OperationsController
     }
     public function addOperation(int $sum, int $typeId, int $userId, string $comment)
     {
-        (new OperationsModel)->store($sum, $typeId, $userId, $comment);
+        $mysqli = (new ConnectionDB)->getMysqli();
+        return (new OperationsModel($mysqli))->store($sum, $typeId, $userId, $comment);
     }
     public function deletOperation(int $id)
     {
-        (new OperationsModel)->delete($id);
+        $mysqli = (new ConnectionDB)->getMysqli();
+        return (new OperationsModel($mysqli))->delete($id);
     }
 }

@@ -18,9 +18,14 @@
         <th>
             Comment operations
         </th>
+        <th>
+        </th>
+        <th>
+        </th>
     </tr>
     <tr>
-        <?php foreach ($argc as $operation) : ?>
+    <?php echo 1234  ?>
+        <?php foreach ($args as $operation) : ?>
         <td>
             <?= 1 ?>
         </td>
