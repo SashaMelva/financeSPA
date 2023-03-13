@@ -20,9 +20,9 @@
         </th>
     </tr>
     <tr>
-        <?php foreach ($operations as $operation) : ?>
+        <?php foreach ($argc as $operation) : ?>
         <td>
-            <?= $i += 1 ?>
+            <?= 1 ?>
         </td>
         <td>
             <?= $operation['sum'] ?>
