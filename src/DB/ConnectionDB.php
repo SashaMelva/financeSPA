@@ -1,17 +1,24 @@
 <?php
 
 namespace App\DB;
+use mysqli;
 
 class ConnectionDB
 {
-    private $host = "financespa-mysql-1";
-    private $username = "user";
-    private $password = "user";
-    private $dataBase = "finance";
+    public $host = "financespa-mysql-1";
+    public $username = "user";
+    public $password = "user";
+    public $dataBase = "finance";
 
-    protected function connection() {
+    public function connection() {
 
-        $conn = new mysqli($this->host, $this->username, $this->password, $this->dataBase);
+        // $conn = new mysqli('financespa-mysql-1', 'user', 'user', 'finance');
+
+        // if ($conn->connect_error) {
+        //     die("Ошибка: " . $conn->connect_error);
+        // }
+        // return $conn;
+        $conn = mysqli_connect($this->host, $this->username, $this->password, $this->dataBase);
 
         if ($conn->connect_error) {
             die("Ошибка: " . $conn->connect_error);

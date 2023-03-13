@@ -35,7 +35,7 @@ async function loadAddOperation() {
 async function authorization() { 
     const form = new FormData(document.querySelector("form.form-authorization"));
 
-    let response = await fetch('/api.php', {
+    let response = await fetch('/api.php?', {
       method: 'POST',
       body: form
     });

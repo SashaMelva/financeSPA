@@ -54,3 +54,8 @@ https://github.com/ionov-e/spa-php-finance/blob/master/public/finance.php
 
 
 <?php require_once("api.php") ?>
+
+
+extension=php_mysqli
+
+RUN docker-php-ext-install mysqli

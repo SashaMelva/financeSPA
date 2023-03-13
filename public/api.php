@@ -11,6 +11,8 @@ use App\Services\Log;
 use App\View;
 use App\DB\Connection;
 
+
+
 //(new Connection())->openConnectionDB();
 
 /**Отслеживание GET запросов, с дальнейшей адресации страницы*/
@@ -23,7 +25,7 @@ switch ($_GET['page']) {
 		break;
 	case 'main_operations':
 		(new OperationsController())->viewOperations();
-		(new OperationsController())->getOperations();
+		(new OperationsController())->getAllOperations();
 		break;
 	case 'add_operation':
 		(new AddOperationsController())->viewAddOperations();
@@ -41,6 +43,9 @@ switch ($_POST['form-name']) {
 		break;
 	case 'registration':
 		(new RegistrationController())->validationRegistration(trim($_POST['login']), trim($_POST['password']), trim($_POST['repeat-password']));
+		break;
+	case 'add_operation':
+		(new AddOperationsController())->validationAddOperation(trim($_POST['summ']), trim($_POST['type-id']), trim($_POST['user-id']), trim($_POST['comment']));
 		break;
 }
 

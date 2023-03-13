@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use App\View;
 use App\Response;
+use App\Models\OperationsModel;
 
 class AddOperationsController 
 {
@@ -14,5 +15,9 @@ class AddOperationsController
     {
         $html = new View("../views/add_operation.php");
         (new Response('success', $html))->getResponse();
+    }
+
+    public function validationAddOperation() {
+        //(new OperationsModel)->addOperation();
     }
 }

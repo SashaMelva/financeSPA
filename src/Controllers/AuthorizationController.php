@@ -38,21 +38,25 @@ class AuthorizationController
 
     public function authenticationUser(string $login, string $password) 
     {
-        $userData = (new UsersModel($login, $password))->loginVerification();
-        $countUserLogin = (new UsersModel($login, $password))->countLogin();
+        $userData = (new UsersModel($login, $password, ''))->loginVerification();
+        $countUserLogin = (new UsersModel($login, $password, ''))->countLogin();
+        // $logContent = $countUserLogin;
+        // Log::debug($logContent);
         
         if ($countUserLogin == 1) {
+            
             if ($userData['password'] == $password) {
                 $this->message[] = "Вы успешно авторизовались";
                 $this->userAuth = true;
-                
+                return (new OperationsController())->viewOperations();
             } else {
+                $this->viewAuthorization();
                 return $this->errorMessage[] = "Пользователь с таким логином не найден"; 
             }
         } else {
+            $this->viewAuthorization();
             return $this->errorMessage[] = "Пользователь с таким логином не найден";
         }
-        
     }
 
     public function authorizationUser(string $login, string $password) 
