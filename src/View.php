@@ -5,8 +5,8 @@ class View
 {
 
     public function __construct(
-        private readonly string $path,
-        private readonly array $args = []
+        private string $path,
+        private array $args = []
     )
     {
     }

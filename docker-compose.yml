@@ -32,3 +32,7 @@ services:
         volumes:
             - '.:/financeSPA'
             - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini'
+        environment:
+            PHP_IDE_CONFIG: "serverName=Docker"
+            XDEBUG_MODE: 'debug'
+            XDEBUG_CONFIG: 'client_host=host.docker.internal'

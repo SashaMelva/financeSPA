@@ -6,12 +6,6 @@ use App\Controllers\AuthorizationController;
 use App\Controllers\RegistrationController;
 use App\Controllers\OperationsController;
 use App\Controllers\AddOperationsController;
-use App\Response;
-use App\Services\Log;
-use App\View;
-use App\DB\Connection;
-
-
 
 //(new Connection())->openConnectionDB();
 
@@ -23,9 +17,9 @@ switch ($_GET['page']) {
 	case 'registration':
 		(new RegistrationController())->viewRegistration();
 		break;
-	case 'main_operations':
+	case 'operation_list':
 		(new OperationsController())->viewOperations();
-		(new OperationsController())->getAllOperations();
+		//(new OperationsController())->getAllOperations();
 		break;
 	case 'add_operation':
 		(new AddOperationsController())->viewAddOperations();

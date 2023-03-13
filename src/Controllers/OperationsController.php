@@ -1,5 +1,6 @@
 <?php
 namespace App\Controllers;
+use App\DB\ConnectionDB;
 use App\View;
 use App\Response;
 use App\Models\OperationsModel;
@@ -13,19 +14,25 @@ class OperationsController
         private string $comment
     ){}*/
 
-    public function viewOperations() 
+    /** @throws \Exception */
+    public function viewOperations(): void
     {
-        $html = new View("../views/main_operations.php");
+        $html = new View("../views/operation_list.php", $this->getAllOperations());
         (new Response('success', $html))->getResponse();
     }
-    public function getAllOperations() {
-        $operations = (new OperationsModel())->selectAllDataOperations();
-        return $operations;
+
+    /** @throws \Exception */
+    public function getAllOperations(): array
+    {
+        $mysqli = (new ConnectionDB)->getMysqli();
+        return (new OperationsModel($mysqli))->getAll();
     }
-    public function addOperation(int $sum, int $typeId, int $userId, string $comment) {
-        (new OperationsModel())->addOperation($sum, $typeId, $userId, $comment);
+    public function addOperation(int $sum, int $typeId, int $userId, string $comment)
+    {
+        (new OperationsModel)->store($sum, $typeId, $userId, $comment);
     }
-    public function deletOperation(int $id) {
-        (new OperationsModel())->deletOperation($id);
+    public function deletOperation(int $id)
+    {
+        (new OperationsModel)->delete($id);
     }
 }

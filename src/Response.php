@@ -1,18 +1,20 @@
 <?php
+
 namespace App;
 
-class Response 
+class Response
 {
     public function __construct(
-        private readonly string $status,
-        private readonly string $html
+        private string $status,
+        private string $html
     )
     {
-      /*  $this->status = 'failed';
-        $this->html = $html;*/
+        /*  $this->status = 'failed';
+          $this->html = $html;*/
     }
 
-    public function getResponse() {
+    public function getResponse(): void
+    {
         echo json_encode(['status' => $this->status, 'html' => $this->html]);
     }
 }

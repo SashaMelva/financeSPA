@@ -1,4 +1,3 @@
-
 <section class="container">
     <div class="form-container">
         <form class="form-display form-authorization">

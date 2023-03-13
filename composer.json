@@ -4,7 +4,8 @@
       "ext-simplexml": "*",
       "monolog/monolog": "^3.2",
       "vlucas/phpdotenv": "*",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+      "ext-mysqli": "*"
     },
     "autoload": {
       "psr-4": {

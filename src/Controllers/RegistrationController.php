@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use App\View;
 use App\Response;
+use App\Models\UsersModel;
 use App\Controllers\OperationsController;
 
 class RegistrationController 
@@ -23,7 +24,8 @@ class RegistrationController
     {
         if ($login == "" || $password == "" || $repeatPassword == "") {
             return $this->errorMessage[] = "Введите логин или пароль";
-        } elseif ($password == $repeatPassword) {
+        } 
+        if ($password != $repeatPassword) {
             return $this->errorMessage[] = "Введённые вами пароли должны совпадать";
         } else {
             $this->registrationUser($login, $password);
@@ -34,14 +36,18 @@ class RegistrationController
     public function registrationUser(string $login, string $password) 
     {
         $countUserLogin = (new UsersModel($login, $password))->countLogin();
-        
-        if ($countUserLogin > 0) {
+        //return (new OperationsController())->viewOperations();
+        if ($countUserLogin == 0) {
             $this->errorMessage[] = "Пользователь с таким логином ";
-            
+            (new OperationsController)->viewOperations();
         } else {
-            $this->message[] = "Вы успешно авторизовались";
-            (new UsersModel($login, $password))->addUser();
-            (new OperationsController())->viewOperations();
+            if ((new UsersModel($login, $password))->addUser()) {
+                $this->message[] = "Вы успешно ";
+               
+            } else {
+                return $this->errorMessage[] = "Error registration";
+            }
+            
         }
         
     }

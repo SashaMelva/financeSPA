@@ -16,11 +16,11 @@ async function loadAuthorizatioin() {
 }
 async function loadRegistration() {
     let response = await fetch('/api.php?page=registration');
-    json = await response.json();
+    let json = await response.json();
     insertIntoHtml(json);
 }
 async function loadMainOperation() {
-    let response = await fetch('/api.php?page=main_operations');
+    let response = await fetch('/api.php?page=operation_list');
     let json = await response.json();
     insertIntoHtml(json);
 }
@@ -35,7 +35,7 @@ async function loadAddOperation() {
 async function authorization() { 
     const form = new FormData(document.querySelector("form.form-authorization"));
 
-    let response = await fetch('/api.php?', {
+    let response = await fetch('/api.php', {
       method: 'POST',
       body: form
     });

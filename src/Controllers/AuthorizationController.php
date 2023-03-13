@@ -1,70 +1,67 @@
 <?php
+
 namespace App\Controllers;
+
+use App\DB\ConnectionDB;
 use App\View;
 use App\Response;
 use App\Models\UsersModel;
 use App\Services\Log;
 
-class AuthorizationController 
+class AuthorizationController
 {
-   /* public function __construct(
-        private string $login,
-        private string $password,
-    ){
-        $this->login = trim($login);
-        $this->password = trim($password);
-    }*/
-    
+    /* public function __construct(
+         private string $login,
+         private string $password,
+     ){
+         $this->login = trim($login);
+         $this->password = trim($password);
+     }*/
+
     public array $message;
-    public array $errorMessage;
-    public bool $userAuth = false;
-    //Метод для загрузки страницы авторизации
-    public function viewAuthorization()
+
+    /** Метод для загрузки страницы авторизации */
+    public function viewAuthorization(): void
     {
         $html = new View("../views/authorization.php");
         (new Response('success', $html))->getResponse();
     }
 
-    public function validationAuthentication(string $login, string $password)
+    public function validationAuthentication(string $login, string $password): void
     {
         if ($login == "" || $password == "") {
-            return $this->errorMessage[] = "Введите логин или пароль";
+            (new Response('fail', "Введите логин или пароль"))->getResponse();
         }
-        if ($login != "" && $password != "") {
-            $this->authenticationUser($login, $password);
-        }
-    }
 
-
-    public function authenticationUser(string $login, string $password) 
-    {
-        $userData = (new UsersModel($login, $password, ''))->loginVerification();
-        $countUserLogin = (new UsersModel($login, $password, ''))->countLogin();
-        // $logContent = $countUserLogin;
-        // Log::debug($logContent);
-        
-        if ($countUserLogin == 1) {
-            
-            if ($userData['password'] == $password) {
-                $this->message[] = "Вы успешно авторизовались";
-                $this->userAuth = true;
-                return (new OperationsController())->viewOperations();
-            } else {
-                $this->viewAuthorization();
-                return $this->errorMessage[] = "Пользователь с таким логином не найден"; 
-            }
+        if ($login != "" && $password != "" && $this->authenticationUser($login, $password)) {
+            (new OperationsController)->viewOperations();
+          //  (new Response('success', "Вы успешно авторизовались"))->getResponse();
         } else {
-            $this->viewAuthorization();
-            return $this->errorMessage[] = "Пользователь с таким логином не найден";
+            (new Response('fail', "Пользователь с таким логином не найден"))->getResponse();
         }
     }
 
-    public function authorizationUser(string $login, string $password) 
+
+    public function authenticationUser(string $login, string $password): bool
     {
-        if($this->validationAuthentication($login, $password) == true) {
-            (new OperationsController())->viewOperations();
+        $mysqli = (new ConnectionDB)->getMysqli();
+        $userModel = new UsersModel($login, $password, $mysqli);
+
+        $userData = ($userModel)->loginVerification();
+        $countUserLogin = ($userModel)->countLogin();
+
+        if ($countUserLogin == "1" && $userData['password'] == $password) {
+            return true;
         }
+        return false;
     }
+
+//    public function authorizationUser(string $login, string $password)
+//    {
+//        if ($this->validationAuthentication($login, $password) == true) {
+//            (new OperationsController())->viewOperations();
+//        }
+//    }
 }
 
 
@@ -84,7 +81,7 @@ class AuthorizationController
 //         include($path);
 //         $var = ob_get_contents();
 //         ob_end_clean();
-    
+
 //         return $var;
 //     }
 // }
