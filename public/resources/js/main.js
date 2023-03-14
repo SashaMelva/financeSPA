@@ -57,7 +57,7 @@ function contentListOperate(data) {
             let cell6 = document.createElement('td');
             let btnDelete = document.createElement('button');
             btnDelete.className = "btn-img " + i + "-cell";
-            btnDelete.setAttribute('onclick', 'delet()');
+            btnDelete.setAttribute('onclick', 'deleteRow(this)');
             cell6.appendChild(btnDelete);
             let btnDeleteImg = document.createElement('img');
             btnDeleteImg.src = "/resources/img/delete.png";
@@ -66,7 +66,9 @@ function contentListOperate(data) {
             row.appendChild(cell6);
 
             let cell7 = document.createElement('td');
-            cell7.innerHTML = data[i]['operations_id'];
+            let idOperations = data[i]['operations_id'];
+            cell7.innerHTML = idOperations;
+            cell7.id = "idOp-" + idOperations;
             cell7.className = "id-option " + i + "-cell";
             cell7.hidden = true;
             row.appendChild(cell7);
@@ -74,24 +76,6 @@ function contentListOperate(data) {
     } else {
         console.log("NotFound")
     }
-    console.log(data);
-}
-
-function edit(btn) {
-    console.log(btn.className);
-    let td = document.querySelectorAll('td.id-option');
-    //let btn = document.querySelectorAll('button.btn-img');
-    for (let i = 0; i < td.length; i++) {
-        console.log(td[i].className);
-    }
-
-    console.log(td);
-    console.log("sdfsf")
-}
-
-function delet() {
-    // let td = document.querySelector();
-    console.log("123123")
 }
 
 /*Отправка запросов на получение страницы*/
@@ -148,13 +132,49 @@ async function registration() {
 
 /* Yдаление и изменение товара*/
 
-async function deleteOperation() {
-    let response = await fetch('/api.php?page=add_operation&action=delete');
+
+function deleteRow(btn) {
+    let btnSelectClassName = btn.className.slice(8)
+    let td = document.querySelectorAll('td.id-option');
+    
+    for (let i = 0; i < td.length; i++) {
+        let cellSelectClassName = td[i].className.slice(10);
+        let cellidOption = td[i].id.slice(5);
+        
+        if (cellSelectClassName == btnSelectClassName) {
+            deleteOperation(cellidOption);
+        }
+        
+    }
 }
 
-async function editOperation() {
-    let idOption = 1;
+async function deleteOperation(idOption) {
+    let response = await fetch('/api.php?page=add_operation&action=delete&id=' + idOption);
+    let json = await response.json();
+    insertIntoHtml(json);
+}
+
+
+function edit(btn) {
+    let btnSelectClassName = btn.className.slice(8)
+    let td = document.querySelectorAll('td.id-option');
+    
+    for (let i = 0; i < td.length; i++) {
+        let cellSelectClassName = td[i].className.slice(10);
+        let cellidOption = td[i].id.slice(5);
+        
+        if (cellSelectClassName == btnSelectClassName) {
+            editOperation(cellidOption);
+        }
+        
+    }
+}
+
+
+async function editOperation(idOption) {
     let response = await fetch('/api.php?page=add_operation&action=edit&id=' + idOption);
+    let json = await response.json();
+    insertIntoHtml(json);
 }
 
 async function addOperation() {
