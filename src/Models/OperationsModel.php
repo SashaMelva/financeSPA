@@ -18,6 +18,7 @@ SELECT login, sum, name, comment, operations_id
 FROM operations 
     INNER JOIN users ON operations.operations_user_id = users.user_id 
     INNER JOIN types ON operations.operations_type_id = types.type_id 
+WHERE users.user_id='1'
 ORDER BY operations_id DESC LIMIT 5;
 ";
         $allData = $this->mysqli->query($sql);

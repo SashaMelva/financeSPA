@@ -1,8 +1,9 @@
 <section class="container">
     <div class="form-container">
         <form class="form-display form-add" action="" method="POST">
+            <input id="form-name" name="form-name" value="add_operation" hidden>
+            <input id="idUser" name="idUser" value="1" hidden>
             <legend class="legend-form">Adding an operation</legend>
-            <input id="userId" name="userId" value="1">
             <label for="sum">Specify the amount</label>
             <input id="sum" name="sum">
             <label for="operations-type">Specify type</label>

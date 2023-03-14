@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
+use App\DB\ConnectionDB;
 use App\View;
 use App\Response;
 use App\Models\UsersModel;
-use App\Controllers\OperationsController;
 
 class RegistrationController
 {
@@ -13,38 +13,34 @@ class RegistrationController
          private string $login,
          private string $password,
      ){}*/
-    public array $message;
-    public array $errorMessage;
+//    public array $message;
+//    public array $errorMessage;
 
-    public function viewRegistration()
+    public function viewRegistration(): void
     {
         $html = new View("../views/registration.php");
-        (new Response('success', $html))->getResponse();
+        (new Response('success', $html, null))->getResponse();
     }
 
-    public function validationRegistration(string $login, string $password, string $repeatPassword)
+    public function validationRegistration(string $login, string $password, string $repeatPassword): void
     {
-        if ($login == "" || $password == "" || $repeatPassword == "") {
-            return $this->errorMessage[] = "Введите логин или пароль";
+        if ($login == "" || $password == "" || $repeatPassword == "" || $password != $repeatPassword) {
+            (new Response('fail', "Введите логин или пароль. Введённые вами пароли должны совпадать", null))->getResponse();
         }
-        if ($password != $repeatPassword) {
-            return $this->errorMessage[] = "Введённые вами пароли должны совпадать";
-        } else if ($this->registrationUser($login, $password)) {
+        if ($this->registrationUser($login, $password)) {
             (new AuthorizationController)->viewAuthorization();
         }
     }
 
-
     public function registrationUser(string $login, string $password): bool
     {
         $mysqli = (new ConnectionDB)->getMysqli();
-        $countUserLogin = (new UsersModel($login, $password, $mysqli))->countLogin();
+        $userModel = new UsersModel($login, $password, $mysqli);
 
-        if ($countUserLogin == 0) {
-            $this->errorMessage[] = "Пользователь с таким логином ";
-            return false;
-        } else if ((new UsersModel($login, $password, $mysqli))->add()) {
-            $this->message[] = "Вы успешно ";
+        $countUserLogin = ($userModel)->countLogin();
+
+        if ($countUserLogin == "0") {
+            ($userModel)->add();
             return true;
         }
         return false;

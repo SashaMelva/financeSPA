@@ -13,7 +13,7 @@
             <div onclick="registration()" class="btn">Sign up</div>
         </form>
         <div class="btn-form">
-            <button onclick="loadAuthorizatioin()" class="btn btn-sign-up">Back</button>
+            <button onclick="loadAuthorization()" class="btn btn-sign-up">Back</button>
         </div>
     </div>
 </section>

@@ -6,7 +6,7 @@ use App\DB\ConnectionDB;
 use App\View;
 use App\Response;
 use App\Models\UsersModel;
-use App\Services\Log;
+
 
 class AuthorizationController
 {
@@ -18,7 +18,7 @@ class AuthorizationController
          $this->password = trim($password);
      }*/
 
-    public array $message;
+    //public array $message;
 
     /** Метод для загрузки страницы авторизации */
     public function viewAuthorization(): void
