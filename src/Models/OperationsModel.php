@@ -24,7 +24,7 @@ ORDER BY operations_id DESC LIMIT 5;
         for ($i = 1; $i < $allData->num_rows; $i++) {
             $arrayData[$i] = mysqli_fetch_assoc($allData);
         }
-        
+
 
         if (!is_array($arrayData)) {
             throw new \Exception('Error with MySQL getting operations');
@@ -33,29 +33,35 @@ ORDER BY operations_id DESC LIMIT 5;
         return $arrayData;
     }
 
-    public function store(int $sum, int $typeId, int $userId, string $comment)
+    public function store(int $sum, int $typeId, int $userId, string $comment): void
     {
-        $sql = "INSERT INTO operations (sum, operations_type_id, operations_user_id, comment) 
-        VALUES ('$sum', '$typeId', '$userId', '$comment');";
-        return $this->mysqli->query($sql);
+        $sql = "
+INSERT INTO operations (sum, operations_type_id, operations_user_id, comment) 
+VALUES ('$sum', '$typeId', '$userId', '$comment');
+";
+        $this->mysqli->query($sql);
     }
 
-    public function delete(int $operationsId)
+    public function delete(int $operationsId): void
     {
-        $sql = "DELETE FROM operations 
-        WHERE operations_id = '$operationsId';";
-        return $this->mysqli->query($sql);
+        $sql = "
+DELETE FROM operations 
+        WHERE operations_id = '$operationsId';
+";
+        $this->mysqli->query($sql);
     }
 
-    public function edit(int $operationsId, int $sum, int $typeId, int $userId, string $comment)
+    public function edit(int $operationsId, int $sum, int $typeId, int $userId, string $comment): void
     {
-        $sql = "UPDATE operations 
+        $sql = "
+UPDATE operations 
         SET sum = '$sum', 
         operations_type_id = '$typeId', 
         operations_user_id = '$userId', 
         comment = '$comment')  
-        WHERE operations_id = '$operationsId';";
-        return $this->mysqli->query($sql);
+        WHERE operations_id = '$operationsId';
+";
+        $this->mysqli->query($sql);
     }
 
     /*public function selectUserForOperation() {

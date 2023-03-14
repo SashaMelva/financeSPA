@@ -8,7 +8,8 @@
             <label for="password">Enter password</label>
             <input class="input-form" id="password" name="password" type="password" placeholder="password" required>
             <label for="repeat-password">Repeat password</label>
-            <input class="input-form" id="repeat-password" name="repeat-password" type="password" placeholder="Repeat password" required>
+            <input class="input-form" id="repeat-password" name="repeat-password" type="password"
+                   placeholder="Repeat password" required>
             <div onclick="registration()" class="btn">Sign up</div>
         </form>
         <div class="btn-form">

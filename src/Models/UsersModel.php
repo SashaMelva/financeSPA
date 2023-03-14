@@ -5,8 +5,8 @@ namespace App\Models;
 class UsersModel
 {
     public function __construct(
-        private string       $login,
-        private string       $password,
+        private string $login,
+        private string $password,
         public \mysqli $mysqli
     )
     {
@@ -18,14 +18,14 @@ class UsersModel
 //        return $this->mysqli->query($sql);
 //    }
 
-    public function loginVerification() :array
+    public function loginVerification(): array
     {
         $sql = "SELECT * FROM users WHERE login='$this->login';";
         $result = $this->mysqli->query($sql);
         return mysqli_fetch_assoc($result);
     }
 
-    public function countLogin() :string
+    public function countLogin(): string
     {
         $sql = "SELECT COUNT(*) AS count FROM users WHERE login='$this->login';";
 
@@ -34,7 +34,7 @@ class UsersModel
         return $row[0];
     }
 
-    public function add() :bool
+    public function add(): bool
     {
         $sql = "INSERT INTO users (login, password) VALUES('$this->login','$this->password');";
         return $this->mysqli->query($sql);

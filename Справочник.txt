@@ -59,3 +59,28 @@ https://github.com/ionov-e/spa-php-finance/blob/master/public/finance.php
 extension=php_mysqli
 
 RUN docker-php-ext-install mysqli
+
+
+
+ <td>
+            <?= 1 ?>
+        </td>
+        <td>
+            <?= $operation['sum'] ?>
+        </td>
+        <td>
+            <?= $operation['name'] ?>
+        </td>
+        <td>
+            <?= $operation['login'] ?>
+        </td>
+        <td>
+            <?= $operation['comment'] ?>
+        </td>
+        <td>
+            <div onclick="deleteOperation()"><img src="/resources/img/delete.png"></div>
+        </td>
+        <td>
+            <div onclick="editOperation()"><img src="/resources/img/edit.png"></div>
+        </td>
+        <?php endforeach;?>

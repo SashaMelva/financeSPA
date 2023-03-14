@@ -24,20 +24,20 @@ class AuthorizationController
     public function viewAuthorization(): void
     {
         $html = new View("../views/authorization.php");
-        (new Response('success', $html))->getResponse();
+        (new Response('success', $html, null))->getResponse();
     }
 
     public function validationAuthentication(string $login, string $password): void
     {
         if ($login == "" || $password == "") {
-            (new Response('fail', "Введите логин или пароль"))->getResponse();
+            (new Response('fail', "Введите логин или пароль", null))->getResponse();
         }
 
         if ($login != "" && $password != "" && $this->authenticationUser($login, $password)) {
             (new OperationsController)->viewOperations();
           //  (new Response('success', "Вы успешно авторизовались"))->getResponse();
         } else {
-            (new Response('fail', "Пользователь с таким логином не найден"))->getResponse();
+            (new Response('fail', "Пользователь с таким логином не найден", null))->getResponse();
         }
     }
 
