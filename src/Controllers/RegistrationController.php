@@ -19,20 +19,20 @@ class RegistrationController
     public function viewRegistration(): void
     {
         $html = new View("../views/registration.php");
-        (new Response('success', $html, null))->getResponse();
+        (new Response('success', $html, null))->echo();
     }
 
     public function validationRegistration(string $login, string $password, string $repeatPassword): void
     {
         if ($login == "" || $password == "" || $repeatPassword == "" || $password != $repeatPassword) {
-            (new Response('fail', "Введите логин или пароль. Введённые вами пароли должны совпадать", null))->getResponse();
+            (new Response('fail', "Введите логин или пароль. Введённые вами пароли должны совпадать", null))->echo();
         }
-        if ($this->registrationUser($login, $password)) {
+        if ($this->isRegistrationUser($login, $password)) {
             (new AuthorizationController)->viewAuthorization();
         }
     }
 
-    public function registrationUser(string $login, string $password): bool
+    public function isRegistrationUser(string $login, string $password): bool
     {
         $mysqli = (new ConnectionDB)->getMysqli();
         $userModel = new UsersModel($login, $password, $mysqli);

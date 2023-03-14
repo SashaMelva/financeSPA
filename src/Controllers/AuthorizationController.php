@@ -24,25 +24,25 @@ class AuthorizationController
     public function viewAuthorization(): void
     {
         $html = new View("../views/authorization.php");
-        (new Response('success', $html, null))->getResponse();
+        (new Response('success', $html, null))->echo();
     }
 
     public function validationAuthentication(string $login, string $password): void
     {
         if ($login == "" || $password == "") {
-            (new Response('fail', "Введите логин или пароль", null))->getResponse();
+            (new Response('fail', "Введите логин или пароль", null))->echo();
         }
 
-        if ($login != "" && $password != "" && $this->authenticationUser($login, $password)) {
+        if ($login != "" && $password != "" && $this->isAuthenticationUser($login, $password)) {
             (new OperationsController)->viewOperations();
           //  (new Response('success', "Вы успешно авторизовались"))->getResponse();
         } else {
-            (new Response('fail', "Пользователь с таким логином не найден", null))->getResponse();
+            (new Response('fail', "Пользователь с таким логином не найден", null))->echo();
         }
     }
 
 
-    public function authenticationUser(string $login, string $password): bool
+    public function isAuthenticationUser(string $login, string $password): bool
     {
         $mysqli = (new ConnectionDB)->getMysqli();
         $userModel = new UsersModel($login, $password, $mysqli);

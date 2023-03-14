@@ -19,9 +19,9 @@ class OperationsController
     /** @throws \Exception */
     public function viewOperations(): void
     {
-        $args = $this->getAllOperations();
-        $html = new View("../views/operation_list.php");
-        (new Response('success', $html, $args))->getResponse();
+        $operations = $this->getAllOperations();
+        $html = new View("../views/operation_list.php", $operations);
+        (new Response('success', $html, $operations))->echo();
     }
 
     /** @throws \Exception */

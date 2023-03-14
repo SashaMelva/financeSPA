@@ -2,18 +2,18 @@
 
 namespace App;
 
-class Response
+readonly class Response
 {
     public function __construct(
         private string $status,
         private string $html,
-        private ?array $args
+        private ?array $data
     )
     {
     }
 
-    public function getResponse(): void
+    public function echo(): void
     {
-        echo json_encode(['status' => $this->status, 'html' => $this->html, 'args' => $this->args]);
+        echo json_encode(['status' => $this->status, 'html' => $this->html, 'data' => $this->data]);
     }
 }

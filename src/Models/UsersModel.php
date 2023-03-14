@@ -34,7 +34,7 @@ class UsersModel
         return $row[0];
     }
 
-    public function add(): bool
+    public function add()
     {
         $sql = "INSERT INTO users (login, password) VALUES('$this->login','$this->password');";
         return $this->mysqli->query($sql);

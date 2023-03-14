@@ -17,20 +17,19 @@ class ActionOperationsController
     public function viewAddOperations(): void
     {
         $html = new View("../views/add_operation.php");
-        (new Response('success', $html, null))->getResponse();
+        (new Response('success', $html, null))->echo();
     }
-
 
     public function add(int $userId, int $sum, int $typeId, string $comment): void
     {
-        if ($this->validationAdd($userId, $sum, $typeId)) {
+        if ($this->isValidationAdd($userId, $sum, $typeId)) {
             $mysqli = (new ConnectionDB)->getMysqli();
             (new OperationsModel($mysqli))->store($sum, $typeId, $userId, $comment);
             (new OperationsController)->viewOperations();
         }
     }
 
-    public function validationAdd(int $userId, int $sum, int $typeId): bool
+    public function isValidationAdd(int $userId, int $sum, int $typeId): bool
     {
         if ($sum == "" || $typeId == "" || $userId == "") {
             return false;

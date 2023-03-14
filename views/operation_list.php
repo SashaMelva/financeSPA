@@ -1,3 +1,16 @@
+<?php
+$operations = $this->args;
+/**
+* @var array{int, array{
+*                       login: string,
+*                       sum: string,
+*                       name: string,
+*                       comment: string,
+*                       operations_id: string}
+*           } $operations
+*/
+?>
+
 <section class="container">
     <h2>Your finances</h2>
     <table>
@@ -7,6 +20,7 @@
             <th>Operations type</th>
             <th> User</th>
             <th>Comment operations</th>
+            <th></th>
             <th></th>
             <th></th>
         </tr>
