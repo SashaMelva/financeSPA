@@ -13,7 +13,7 @@ $operations = $this->args;
 
 <section class="container">
     <h2>Your finances</h2>
-    <table>
+    <table class="table-main">
         <tr>
             <th>№</th>
             <th>Summ</th>
@@ -28,4 +28,5 @@ $operations = $this->args;
         </tbody>
     </table>
     <div class="btn" onclick="loadAddOperation()">Add new operation</div>
+    <button class="btn btn-sign-up" onclick="loadAuthorization()">Back</button>
 </section>

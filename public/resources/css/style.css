@@ -53,16 +53,18 @@ li {
     list-style: none;
 }
 .main {
-    height: 100%;
+    height: 80%;
 }
 .container {
     display: flex;
+    flex-direction: column;
     height: 100%;
     align-items: center;
     max-width: 1160px;
     margin: auto;
     padding: 0px 20px;
 
+    margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -129,4 +131,23 @@ li {
 
 .error{
     color: var(--primary-focus);
+}
+
+/**/
+
+
+.table-main {
+    width: 100%;
+    border: var(--basic-dark) solid 3px;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+.table-main td, th {
+    border: var(--basic-dark) solid 3px;
+}
+.btn-img {
+    border: 0px;
+    background-color: transparent;
+    padding: 0px;
+    width: 30px;
 }
