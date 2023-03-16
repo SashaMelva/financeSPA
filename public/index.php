@@ -10,6 +10,7 @@
 </head>
 <body>
     <main id="app" class="main">
+        <h2 id="login"></h2>
 
     </main>
     <script src="/resources/js/main.js"></script>

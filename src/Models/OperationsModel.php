@@ -11,16 +11,17 @@ class OperationsModel
     }
 
     /** @throws \Exception */
-    public function getAll(): array
+    public function getAll(int $idUser): array
     {
         $sql = "
 SELECT login, sum, name, comment, operations_id
 FROM operations 
     INNER JOIN users ON operations.operations_user_id = users.user_id 
     INNER JOIN types ON operations.operations_type_id = types.type_id 
-WHERE users.user_id='1'
-ORDER BY operations_id DESC LIMIT 5;
+WHERE users.user_id='$idUser'
+ORDER BY operations_id LIMIT 5;
 ";
+        $arrayData = [];
         $allData = $this->mysqli->query($sql);
         for ($i = 1; $i < $allData->num_rows; $i++) {
             $arrayData[$i] = mysqli_fetch_assoc($allData);
@@ -32,6 +33,18 @@ ORDER BY operations_id DESC LIMIT 5;
         }
 
         return $arrayData;
+    }
+
+    public function getUserIdForLogin($idOperation)
+    {
+        $sql = "
+SELECT operations_user_id
+FROM operations 
+WHERE operations_id='$idOperation';
+";
+        $result = $this->mysqli->query($sql);
+        $row = $result->fetch_row();
+        return $row[0];
     }
 
     public function store(int $sum, int $typeId, int $userId, string $comment): void

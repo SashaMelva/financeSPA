@@ -9,7 +9,7 @@
             <input id="form-name" name="form-name" value="add_operation" hidden>
             <label>You login</label>
             <input class="input-form input-login-user" id="login" name="login" readonly>
-            <legend class="legend-form">Adding an operation</legend>
+            <legend class="legend-form">Edit an operation</legend>
             <label for="sum">Specify the amount</label>
             <input class="input-form" id="sum" name="sum">
             <label for="operations-type">Specify type</label>

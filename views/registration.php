@@ -1,4 +1,9 @@
 <section class="container">
+    <?php if ($this->arguments[0]) :?>
+        <div>
+            <p><?= $this->arguments[0]?></p>
+        </div>
+    <?php endif; ?>
     <div class="form-container">
         <form class="form-display form-registration" method="POST">
             <input id="form-name" name="form-name" value="registration" hidden>
@@ -10,10 +15,10 @@
             <label for="repeat-password">Repeat password</label>
             <input class="input-form" id="repeat-password" name="repeat-password" type="password"
                    placeholder="Repeat password" required>
-            <div onclick="registration()" class="btn">Sign up</div>
+            <div onclick="fetchAndViewRegistration()" class="btn">Sign up</div>
         </form>
         <div class="btn-form">
-            <button onclick="loadAuthorization()" class="btn btn-sign-up">Back</button>
+            <button onclick="fetchAndViewAuthorizationForm()" class="btn btn-sign-up">Back</button>
         </div>
     </div>
 </section>

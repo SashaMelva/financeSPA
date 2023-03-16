@@ -6,7 +6,7 @@ class UsersModel
 {
     public function __construct(
         private string $login,
-        private string $password,
+        private ?string $password,
         public \mysqli $mysqli
     )
     {
@@ -22,9 +22,18 @@ class UsersModel
     {
         $sql = "SELECT * FROM users WHERE login='$this->login';";
         $result = $this->mysqli->query($sql);
-        return mysqli_fetch_assoc($result);
-    }
 
+        $userAsArray = mysqli_fetch_assoc($result);
+
+        if (is_null($userAsArray)) {
+            return [];
+        }
+
+        return $userAsArray;
+    }
+//    public  function idUserLogin() {
+//        $sql = "SELECT * FROM users WHERE login='$this->login';";
+//    }
     public function countLogin(): string
     {
         $sql = "SELECT COUNT(*) AS count FROM users WHERE login='$this->login';";
@@ -39,6 +48,4 @@ class UsersModel
         $sql = "INSERT INTO users (login, password) VALUES('$this->login','$this->password');";
         return $this->mysqli->query($sql);
     }
-
-
 }

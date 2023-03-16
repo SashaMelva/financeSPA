@@ -14,7 +14,7 @@ if (isset($_GET['page'])) {
         'authorization' => (new AuthorizationController())->viewAuthorization(),
         'registration' => (new RegistrationController())->viewRegistration(),
         'operation_list' => (new OperationsController())->viewOperations(),
-        'add_operation' => (new ActionOperationsController())->viewAddOperations(),
+        'add_operation' => (new ActionOperationsController())->viewAddOperations($_GET['userLogin']),
     };
 }
 
@@ -22,17 +22,18 @@ if (isset($_POST['form-name'])) {
     match ($_POST['form-name']) {
         'authorization' => (new AuthorizationController())->validationAuthentication(trim($_POST['login']), trim($_POST['password'])),
         'registration' => (new RegistrationController())->validationRegistration(trim($_POST['login']), trim($_POST['password']), trim($_POST['repeat-password'])),
-        'add_operation' => (new ActionOperationsController())->add($_POST['idUser'], trim($_POST['sum']), trim($_POST['operations-type']), trim($_POST['comment']))
+        'add_operation' => (new ActionOperationsController())->add($_POST['login'], trim($_POST['sum']), trim($_POST['operations-type']), trim($_POST['comment']))
     };
 }
 
 if (isset($_GET['action'])) {
     match ($_GET['action']) {
-        'edit' => (new ActionOperationsController())->edit(trim($_GET['sum']), trim($_GET['type-id']), trim($_GET['user-id']), trim($_GET['comment'])),
-        'delete' => (new ActionOperationsController())->delete(trim($_GET['id']))
+        'delete' => (new ActionOperationsController())->delete($_GET['idOperation']),
+        'edit' => (new ActionOperationsController())->viewEditOperations(), //trim($_GET['idOperation']), trim($_GET['type-id']), trim($_GET['user-id']), trim($_GET['comment'])),
     };
 }
 
+exit(0);
 /*
 Log::debug(json_encode(file_get_contents('php://input')));
 

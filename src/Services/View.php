@@ -1,19 +1,18 @@
 <?php
-namespace App;
+namespace App\Services;
 
 class View
 {
-
     public function __construct(
-        private string $path,
-        private array $args = []
+        private ViewPath $viewPath,
+        private array    $arguments = []
     )
     {
     }
 
     public function __toString(): string
     {
-        return $this->getRenderedFileAsString($this->path);
+        return $this->getRenderedFileAsString($this->viewPath->value);
     }
 
     /** Рендеринг страницы */

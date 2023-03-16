@@ -2,10 +2,13 @@
 
 namespace App\Controllers;
 
-use App\DB\ConnectionDB;
-use App\View;
-use App\Response;
 use App\Models\OperationsModel;
+use App\Models\UsersModel;
+use App\Services\ConnectionDB;
+use App\Services\Log;
+use App\Services\Response;
+use App\Services\View;
+use App\Services\ViewPath;
 
 class ActionOperationsController
 {
@@ -14,18 +17,37 @@ class ActionOperationsController
         private string $password,
     ){}*/
 
-    public function viewAddOperations(): void
+    public function viewAddOperations(string $userLogin): void
     {
-        $html = new View("../views/add_operation.php");
+        $html = new View(ViewPath::OperationAdd);
+        (new Response('success', $html, [$userLogin]))->echo();
+    }
+
+    public function viewEditOperations() :void
+    {
+        $html = new View(ViewPath::OperationEdit);
         (new Response('success', $html, null))->echo();
     }
 
-    public function add(int $userId, int $sum, int $typeId, string $comment): void
+    public function add(string $userLogin, int $sum, int $typeId, string $comment): void
     {
-        if ($this->isValidationAdd($userId, $sum, $typeId)) {
+        try {
             $mysqli = (new ConnectionDB)->getMysqli();
-            (new OperationsModel($mysqli))->store($sum, $typeId, $userId, $comment);
-            (new OperationsController)->viewOperations();
+            $userData = (new UsersModel($userLogin, null, $mysqli))->loginVerification();
+            $userId = $userData["user_id"];
+
+            if ($this->isValidationAdd($userId, $sum, $typeId)) {
+                (new OperationsModel($mysqli))->store($sum, $typeId, $userId, $comment);
+                (new OperationsController)->viewOperations($userId);
+            } else {
+                $html = new View(ViewPath::OperationAdd, ["Fill all required fields"]);
+                (new Response('success', $html, null))->echo();
+            }
+
+        } catch (\Exception $e) {
+            Log::error('При добавлении операции exception: ' . $e->getMessage());
+            $html = new View(ViewPath::NotFound);
+            (new Response('fail', $html, null))->echo();
         }
     }
 
@@ -38,17 +60,20 @@ class ActionOperationsController
     }
 
 
-    public function delete(int $id): void
+    public function delete(int $idOperation): void
     {
         $mysqli = (new ConnectionDB)->getMysqli();
-        (new OperationsModel($mysqli))->delete($id);
-        (new OperationsController)->viewOperations();
+
+        $idUser = (new OperationsModel($mysqli))->getUserIdForLogin($idOperation);
+        (new OperationsModel($mysqli))->delete($idOperation);
+
+        (new OperationsController)->viewOperations($idUser);
     }
 
     public function edit(int $id): void
     {
         $mysqli = (new ConnectionDB)->getMysqli();
-        (new OperationsModel($mysqli))->edit($id);
+        (new OperationsModel($mysqli))->edit($id); #TODO
         (new OperationsController)->viewOperations();
     }
 }

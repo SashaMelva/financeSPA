@@ -2,86 +2,55 @@
 
 namespace App\Controllers;
 
-use App\DB\ConnectionDB;
-use App\View;
-use App\Response;
 use App\Models\UsersModel;
+use App\Services\ConnectionDB;
+use App\Services\Response;
+use App\Services\View;
+use App\Services\ViewPath;
 
 
 class AuthorizationController
 {
-    /* public function __construct(
-         private string $login,
-         private string $password,
-     ){
-         $this->login = trim($login);
-         $this->password = trim($password);
-     }*/
-
-    //public array $message;
-
     /** Метод для загрузки страницы авторизации */
     public function viewAuthorization(): void
     {
-        $html = new View("../views/authorization.php");
+        $html = new View(ViewPath::Authorization);
         (new Response('success', $html, null))->echo();
     }
 
     public function validationAuthentication(string $login, string $password): void
     {
         if ($login == "" || $password == "") {
-            (new Response('fail', "Введите логин или пароль", null))->echo();
-        }
-
-        if ($login != "" && $password != "" && $this->isAuthenticationUser($login, $password)) {
-            (new OperationsController)->viewOperations();
-          //  (new Response('success', "Вы успешно авторизовались"))->getResponse();
+            $html = new View(ViewPath::Authorization, ["Fill in the password and login fields"]);
+            (new Response('success', $html, null))->echo(); #TODO
+        } elseif ($this->isAuthenticationUser($login, $password)) {
+            $userId = $this->getUserId($login, $password);
+            (new OperationsController)->viewOperations($userId);
         } else {
-            (new Response('fail', "Пользователь с таким логином не найден", null))->echo();
+            $html = new View(ViewPath::Authorization, ["Authorization failed. This user is not in the system"]);
+            (new Response('success', $html, null))->echo();
         }
     }
-
 
     public function isAuthenticationUser(string $login, string $password): bool
     {
         $mysqli = (new ConnectionDB)->getMysqli();
         $userModel = new UsersModel($login, $password, $mysqli);
 
-        $userData = ($userModel)->loginVerification();
-        $countUserLogin = ($userModel)->countLogin();
+        $userData = $userModel->loginVerification();
+        $countUserLogin = $userModel->countLogin();
 
         if ($countUserLogin == "1" && $userData['password'] == $password) {
             return true;
         }
+
         return false;
     }
+    public function getUserId(string $login, string $password): int
+    {
+        $mysqli = (new ConnectionDB)->getMysqli();
+        $userData = (new UsersModel($login, $password, $mysqli))->loginVerification();
+        return  intval($userData["user_id"]);
+    }
 
-//    public function authorizationUser(string $login, string $password)
-//    {
-//        if ($this->validationAuthentication($login, $password) == true) {
-//            (new OperationsController())->viewOperations();
-//        }
-//    }
 }
-
-
-
-
-
-
-
-
-
-
-// class View
-// {
-//     public static function getHtml(string $path): string 
-//     {
-//         ob_start();
-//         include($path);
-//         $var = ob_get_contents();
-//         ob_end_clean();
-
-//         return $var;
-//     }
-// }

@@ -2,33 +2,30 @@
 
 namespace App\Controllers;
 
-use App\DB\ConnectionDB;
-use App\View;
-use App\Response;
 use App\Models\UsersModel;
+use App\Services\ConnectionDB;
+use App\Services\Response;
+use App\Services\View;
+use App\Services\ViewPath;
 
 class RegistrationController
 {
-    /*public function __construct(
-         private string $login,
-         private string $password,
-     ){}*/
-//    public array $message;
-//    public array $errorMessage;
-
     public function viewRegistration(): void
     {
-        $html = new View("../views/registration.php");
+        $html = new View(ViewPath::Registration);
         (new Response('success', $html, null))->echo();
     }
 
     public function validationRegistration(string $login, string $password, string $repeatPassword): void
     {
         if ($login == "" || $password == "" || $repeatPassword == "" || $password != $repeatPassword) {
-            (new Response('fail', "Введите логин или пароль. Введённые вами пароли должны совпадать", null))->echo();
-        }
-        if ($this->isRegistrationUser($login, $password)) {
+            $html = new View(ViewPath::Registration, ["Fill in the login, password and repeat password fields"]);
+            (new Response('success', $html, null))->echo();
+        }elseif ($this->isRegistrationUser($login, $password)) {
             (new AuthorizationController)->viewAuthorization();
+        } else {
+            $html = new View(ViewPath::Registration, ["Registration failed."]);
+            (new Response('success', $html, null))->echo();
         }
     }
 
