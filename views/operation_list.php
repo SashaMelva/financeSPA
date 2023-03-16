@@ -26,6 +26,13 @@
         <tbody class="table-operation">
         </tbody>
     </table>
+    <div>
+        <label>Total:</label>
+        <label>Incoming</label>
+        <p class="incoming-all"></p>
+        <label>Expense:</label>
+        <p class="expense-all"></p>
+    </div>
     <div class="btn" onclick="fetchAndViewAddOperationForm()">Add new operation</div>
     <button class="btn btn-sign-up" onclick="fetchAndViewAuthorizationForm()">Back</button>
 </section>

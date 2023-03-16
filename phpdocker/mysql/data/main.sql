@@ -28,7 +28,7 @@ INSERT INTO users (login, password) VALUES
             ('user3', '123');
 
 INSERT INTO types (name, description) VALUES 
-            ('coming', ''), 
+            ('incoming', ''),
             ('expense', '');
 
 

@@ -28,6 +28,9 @@ function insertOperationsIntoHtmlTable(operations, table) {
 
     let operationCounter = Object.keys(operations).length;
 
+    let AllIncoming = 0;
+    let AllExpense = 0;
+
     if (operationCounter === 0) {
         console.log("NotFound") // #TODO
     }
@@ -85,7 +88,20 @@ function insertOperationsIntoHtmlTable(operations, table) {
         btnDelete.appendChild(btnDeleteImg);
 
         row.appendChild(columnButtonDelete);
+
+        if (operations[i]['name'] === 'expense') {
+           AllExpense += operations[i]['sum'];
+        } else {
+            AllIncoming += operations[i]['sum'];
+        }
     }
+
+    const totalIncomingParagraph = document.querySelector("p.incoming-all");
+    const totalExpenseParagraph = document.querySelector("expense-all");
+
+    totalIncomingParagraph.innerHTML = AllIncoming;
+    totalExpenseParagraph.innerHTML = AllExpense;
+
 }
 
 /*Отправка запросов на получение страницы*/

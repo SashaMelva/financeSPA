@@ -38,10 +38,10 @@ ORDER BY operations_id LIMIT 5;
     public function getUserIdForLogin($idOperation)
     {
         $sql = "
-SELECT operations_user_id
-FROM operations 
-WHERE operations_id='$idOperation';
-";
+            SELECT operations_user_id
+            FROM operations 
+            WHERE operations_id='$idOperation';
+        ";
         $result = $this->mysqli->query($sql);
         $row = $result->fetch_row();
         return $row[0];
@@ -50,9 +50,9 @@ WHERE operations_id='$idOperation';
     public function store(int $sum, int $typeId, int $userId, string $comment): void
     {
         $sql = "
-INSERT INTO operations (sum, operations_type_id, operations_user_id, comment) 
-VALUES ('$sum', '$typeId', '$userId', '$comment');
-";
+        INSERT INTO operations (sum, operations_type_id, operations_user_id, comment) 
+        VALUES ('$sum', '$typeId', '$userId', '$comment');
+        ";
         $this->mysqli->query($sql);
     }
 
