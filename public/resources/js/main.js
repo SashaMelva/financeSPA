@@ -99,8 +99,8 @@ function insertOperationsIntoHtmlTable(operations, table) {
     const totalIncomingParagraph = document.querySelector("p.incoming-all");
     const totalExpenseParagraph = document.querySelector("expense-all");
 
-    totalIncomingParagraph.innerHTML = AllIncoming;
-    totalExpenseParagraph.innerHTML = AllExpense;
+    totalIncomingParagraph.innerHTML = AllIncoming.toString();
+    totalExpenseParagraph.innerHTML = AllExpense.toString();
 
 }
 
