@@ -89,15 +89,17 @@ function insertOperationsIntoHtmlTable(operations, table) {
 
         row.appendChild(columnButtonDelete);
 
-        if (operations[i]['name'] === 'expense') {
-           AllExpense += operations[i]['sum'];
+       
+        
+        if (operations[i]['name'] == 'expense') {
+           AllExpense += Number(operations[i]['sum']);
         } else {
-            AllIncoming += operations[i]['sum'];
+            AllIncoming += Number(operations[i]['sum']);
         }
     }
 
     const totalIncomingParagraph = document.querySelector("p.incoming-all");
-    const totalExpenseParagraph = document.querySelector("expense-all");
+    const totalExpenseParagraph = document.querySelector("p.expense-all");
 
     totalIncomingParagraph.innerHTML = AllIncoming.toString();
     totalExpenseParagraph.innerHTML = AllExpense.toString();

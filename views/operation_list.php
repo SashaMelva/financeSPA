@@ -28,9 +28,9 @@
     </table>
     <div>
         <label>Total:</label>
-        <label>Incoming</label>
+        <p>Incoming</p>
         <p class="incoming-all"></p>
-        <label>Expense:</label>
+        <p>Expense:</p>
         <p class="expense-all"></p>
     </div>
     <div class="btn" onclick="fetchAndViewAddOperationForm()">Add new operation</div>
