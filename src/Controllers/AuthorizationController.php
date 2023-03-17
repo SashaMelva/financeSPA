@@ -7,6 +7,7 @@ use App\Services\ConnectionDB;
 use App\Services\Response;
 use App\Services\View;
 use App\Services\ViewPath;
+use Exception;
 
 
 class AuthorizationController
@@ -18,14 +19,16 @@ class AuthorizationController
         (new Response('success', $html, null))->echo();
     }
 
+    /**
+     * @throws Exception
+     */
     public function validationAuthentication(string $login, string $password): void
     {
-        if ($login == "" || $password == "") {
+        if (empty($login) || empty($password)) {
             $html = new View(ViewPath::Authorization, ["Fill in the password and login fields"]);
-            (new Response('success', $html, null))->echo(); #TODO
+            (new Response('success', $html, null))->echo();
         } elseif ($this->isAuthenticationUser($login, $password)) {
-            $userId = $this->getUserId($login, $password);
-            (new OperationsController)->viewOperations($userId);
+            (new OperationsController)->viewOperations($login);
         } else {
             $html = new View(ViewPath::Authorization, ["Authorization failed. This user is not in the system"]);
             (new Response('success', $html, null))->echo();
@@ -46,11 +49,4 @@ class AuthorizationController
 
         return false;
     }
-    public function getUserId(string $login, string $password): int
-    {
-        $mysqli = (new ConnectionDB)->getMysqli();
-        $userData = (new UsersModel($login, $password, $mysqli))->loginVerification();
-        return  intval($userData["user_id"]);
-    }
-
 }

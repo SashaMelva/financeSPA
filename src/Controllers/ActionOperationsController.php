@@ -12,11 +12,6 @@ use App\Services\ViewPath;
 
 class ActionOperationsController
 {
-    /*public function __construct(
-        private string $login,
-        private string $password,
-    ){}*/
-
     public function viewAddOperations(string $userLogin): void
     {
         $html = new View(ViewPath::OperationAdd);
@@ -37,8 +32,8 @@ class ActionOperationsController
             $userId = $userData["user_id"];
 
             if ($this->isValidationAdd($userId, $sum, $typeId)) {
-                (new OperationsModel($mysqli))->store($sum, $typeId, $userId, $comment);
-                (new OperationsController)->viewOperations($userId);
+                (new OperationsModel($mysqli))->add($sum, $typeId, $userId, $comment);
+                (new OperationsController)->viewOperations($userLogin);
             } else {
                 $html = new View(ViewPath::OperationAdd, ["Fill all required fields"]);
                 (new Response('success', $html, null))->echo();
@@ -47,7 +42,7 @@ class ActionOperationsController
         } catch (\Exception $e) {
             Log::error('При добавлении операции exception: ' . $e->getMessage());
             $html = new View(ViewPath::NotFound);
-            (new Response('fail', $html, null))->echo();
+            (new Response('failed', $html, null))->echo();
         }
     }
 
@@ -60,20 +55,29 @@ class ActionOperationsController
     }
 
 
-    public function delete(int $idOperation): void
+    /**
+     * @throws \Exception
+     */
+    public function delete(int $idOperation, string $login): void
     {
-        $mysqli = (new ConnectionDB)->getMysqli();
+        try {
+            $mysqli = (new ConnectionDB)->getMysqli();
 
-        $idUser = (new OperationsModel($mysqli))->getUserIdForLogin($idOperation);
-        (new OperationsModel($mysqli))->delete($idOperation);
+            (new OperationsModel($mysqli))->delete($idOperation);
+            (new OperationsController)->viewOperations($login);
 
-        (new OperationsController)->viewOperations($idUser);
+        } catch (\Exception $e) {
+            Log::error('При удалении операции exception: ' . $e->getMessage());
+            $html = new View(ViewPath::NotFound);
+            (new Response('failed', $html, null))->echo();
+        }
+
     }
 
-    public function edit(int $id): void
-    {
-        $mysqli = (new ConnectionDB)->getMysqli();
-        (new OperationsModel($mysqli))->edit($id); #TODO
-        (new OperationsController)->viewOperations();
-    }
+//    public function edit(int $id): void
+//    {
+//        $mysqli = (new ConnectionDB)->getMysqli();
+//        (new OperationsModel($mysqli))->edit($id); #TODO
+//        (new OperationsController)->viewOperations();
+//    }
 }

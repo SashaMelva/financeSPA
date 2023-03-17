@@ -12,10 +12,10 @@
             <input class="input-form" id="login" name="login" type="text" placeholder="login" required>
             <label for="password">Enter password</label>
             <input class="input-form" id="password" name="password" type="password" placeholder="password" required>
-            <div class="btn btn-sign-up" onclick="fetchAndViewAuthorization()">Sign in</div>
+            <button type='button' class="btn btn-sign-up" onclick="fetchAndViewAuthorization()">Sign in</button>
         </form>
         <div class="btn-form">
-            <button class="btn btn-sign-up" onclick="fetchAndViewRegistrationForm()">Sign up</button>
+            <button type='button'  class="btn btn-sign-up" onclick="fetchAndViewRegistrationForm()">Sign up</button>
         </div>
     </div>
 </section>

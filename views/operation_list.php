@@ -1,18 +1,5 @@
-<?php
-//$operations = $this->args;    #TODO Del
-///**
-//* @var array{int, array{
-//*                       login: string,
-//*                       sum: string,
-//*                       name: string,
-//*                       comment: string,
-//*                       operations_id: string}
-//*           } $operations
-//*/
-//?>
-
 <section class="container">
-    <h2>Your finances</h2>
+    <h2>Your finances,</h2><h2 class="your-login-user"> <?= $this->arguments[0]?></h2>
     <table class="table-main">
         <tr>
             <th>№</th>

@@ -84,3 +84,17 @@ RUN docker-php-ext-install mysqli
             <div onclick="editOperation()"><img src="/resources/img/edit.png"></div>
         </td>
         <?php endforeach;?>
+
+
+
+   //$operations = $this->args;
+   ///**
+   //* @var array{int, array{
+   //*                       login: string,
+   //*                       sum: string,
+   //*                       name: string,
+   //*                       comment: string,
+   //*                       operations_id: string}
+   //*           } $operations
+   //*/
+   //

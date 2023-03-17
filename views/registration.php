@@ -1,7 +1,7 @@
 <section class="container">
-    <?php if ($this->arguments[0]) :?>
+    <?php if ($this->arguments[0]) : ?>
         <div>
-            <p><?= $this->arguments[0]?></p>
+            <p><?= $this->arguments[0] ?></p>
         </div>
     <?php endif; ?>
     <div class="form-container">

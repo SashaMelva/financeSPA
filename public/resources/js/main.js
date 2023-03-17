@@ -3,17 +3,26 @@ document.addEventListener("DOMContentLoaded", fetchAndViewAuthorizationForm);
 
 function insertIntoHtml(json) {
 
-    let main = document.querySelector('main');
+    let main = document.querySelector('#app');
     let operations = json.data;
-    main.innerHTML = json.html;
+    let view = json.html;
+    let status = json.status;
+    main.innerHTML = view;
 
-    const table = document.querySelector('tbody.table-operation');
+    const table = document.querySelector('table.table-main');
 
-    if (operations !== null && table!==null) {
+    if (checkStatusJson(status) && operations !== null && table !== null) {
         insertOperationsIntoHtmlTable(operations, table);
-    }else if (operations !== null) {
+    }else if (checkStatusJson(status) && operations !== null) {
         insertLoginUserIntoHtml(operations)
     }
+}
+
+function checkStatusJson(status) {
+    if (status === 'failed') {
+        return false
+    }
+    return true
 }
 
 function insertLoginUserIntoHtml(operations) {
@@ -23,22 +32,22 @@ function insertLoginUserIntoHtml(operations) {
     console.log(inputLogin);
 }
 
-
 function insertOperationsIntoHtmlTable(operations, table) {
 
     let operationCounter = Object.keys(operations).length;
 
     let AllIncoming = 0;
     let AllExpense = 0;
+    console.log(operations);
 
     if (operationCounter === 0) {
-        console.log("NotFound") // #TODO
+        console.log("NotFound")
     }
 
     for (let i = 1; i <= operationCounter; i++) {
 
         let operationId = operations[i]['operations_id'];
-        //console.log(operationId);
+        console.log(operationId);
 
         const row = document.createElement('tr');
 
@@ -89,8 +98,6 @@ function insertOperationsIntoHtmlTable(operations, table) {
 
         row.appendChild(columnButtonDelete);
 
-       
-        
         if (operations[i]['name'] == 'expense') {
            AllExpense += Number(operations[i]['sum']);
         } else {
@@ -107,7 +114,6 @@ function insertOperationsIntoHtmlTable(operations, table) {
 }
 
 /*Отправка запросов на получение страницы*/
-
 async function fetchAndViewAuthorizationForm() {
 
     let response = await fetch('/api.php?page=authorization');
@@ -124,22 +130,22 @@ async function fetchAndViewRegistrationForm() {
 }
 
 async function fetchAndViewOperationListForm() {
-    let response = await fetch('/api.php?page=operation_list');
+    let userLogin = document.querySelector("input.input-login-user").value;
+    let response = await fetch('/api.php?page=operation_list&userLogin=' + userLogin.trim());
 
     let json = await response.json();
     insertIntoHtml(json);
 }
 
 async function fetchAndViewAddOperationForm() {
-    let userLogin = document.querySelector("td.user-login").innerHTML;
-    let response = await fetch('/api.php?page=add_operation&userLogin=' + userLogin);
+    let login = document.querySelector("h2.your-login-user").innerHTML;
+    let response = await fetch('/api.php?page=add_operation&login=' + login.trim());
 
     let json = await response.json();
     insertIntoHtml(json);
 }
 
 /*Отпрвавка запросов авторизауии и регистрации*/
-
 async function fetchAndViewAuthorization() {
     const form = new FormData(document.querySelector("form.form-authorization"));
 
@@ -164,20 +170,22 @@ async function fetchAndViewRegistration() {
     insertIntoHtml(json);
 }
 
-/* Yдаление и изменение товара*/
+/* Удаление и изменение товара*/
 
 async function fetchAndViewDeleteOperation(idOperation) {
-    let response = await fetch('/api.php?action=delete&idOperation=' + idOperation);
+    let userLogin = document.querySelector("h2.your-login-user").innerHTML;
+    let response = await fetch('/api.php?action=delete&idOperation=' + idOperation + '&login=' + userLogin.trim());
 
     let json = await response.json();
     insertIntoHtml(json);
 }
 
 async function fetchAndViewEditOperationForm(idOperation) {
-    let response = await fetch('/api.php?action=edit&idOperation=' + idOperation);
-
-    let json = await response.json();
-    insertIntoHtml(json);
+    alert("Функционал в разработке");
+    // let response = await fetch('/api.php?action=edit&idOperation=' + idOperation);
+    //
+    // let json = await response.json();
+    // insertIntoHtml(json);
 }
 
 async function fetchAndViewAddOperation() {
