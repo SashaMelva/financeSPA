@@ -98,3 +98,40 @@ RUN docker-php-ext-install mysqli
    //*           } $operations
    //*/
    //
+
+
+
+
+   final readonly class Response
+{
+    public function __construct(
+        private string $status,
+        private string $html,
+        private array $data
+    )
+    {
+    }
+    
+    public static withoutData(string $status, string $html): self
+    {
+    	return new self($status, $html, []);
+    }
+
+    public function echo(): void
+    {
+        echo json_encode(
+        	['status' => $this->status, 'html' => $this->html, 'data' => $this->data]
+        );
+    }
+}
+
+Response::successWithoutData($html)
+
+
+public function getDb(mysqli_connection $db)
+public function getDb(string $dsn)
+public function getDb(string $host, string $user, string $pass);
+
+new Response('success', $html, null)
+new Response('success', $html)
+new Response($html)
